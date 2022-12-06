@@ -2,3 +2,4 @@ node_modules
 src/**/*.css
 src/gql/*.ts
 *.graphql
+.keystone/config.js
