@@ -107,6 +107,11 @@ var keystone_default = withAuth(
     db: dbConfig,
     lists: schemas,
     session,
+    server: {
+      options: {
+        path: '/admin',
+      },
+    },
   }),
 )
 // Annotate the CommonJS export names for ESM import in node:

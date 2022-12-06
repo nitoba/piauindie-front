@@ -9,5 +9,10 @@ export default withAuth(
     db: dbConfig,
     lists: schemas,
     session,
+    server: {
+      options: {
+        path: '/admin',
+      },
+    },
   }),
 )
