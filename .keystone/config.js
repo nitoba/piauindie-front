@@ -33,9 +33,7 @@ var import_core2 = require('@keystone-6/core')
 // src/keystone/auth/index.ts
 var import_auth = require('@keystone-6/auth')
 var import_session = require('@keystone-6/core/session')
-var _a
-var sessionSecret =
-  (_a = process.env.SESSION_SECRET) != null ? _a : 'default-secret'
+var sessionSecret = process.env.SESSION_SECRET ?? 'default-secret'
 var { withAuth } = (0, import_auth.createAuth)({
   listKey: 'User',
   identityField: 'email',
@@ -53,10 +51,9 @@ var session = (0, import_session.statelessSessions)({
 })
 
 // src/keystone/db-config.ts
-var _a2
 var dbConfig = {
   provider: 'postgresql',
-  url: (_a2 = process.env.DATABASE_URL) != null ? _a2 : '',
+  url: process.env.DATABASE_URL ?? '',
   shadowDatabaseUrl: process.env.SHADOW_DATABASE_URL,
   enableLogging: true,
   useMigrations: true,
@@ -68,8 +65,7 @@ var import_access = require('@keystone-6/core/access')
 var import_fields = require('@keystone-6/core/fields')
 
 // src/keystone/auth/permissions.ts
-var isAdmin = ({ session: session2 }) =>
-  (session2 == null ? void 0 : session2.data.role) === 'admin'
+var isAdmin = ({ session: session2 }) => session2?.data.role === 'admin'
 
 // src/keystone/schemas/user.schema.ts
 var userSchema = (0, import_core.list)({

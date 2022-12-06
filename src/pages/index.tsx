@@ -1,100 +1,16 @@
-import * as React from 'react'
-import {
-  PlasmicComponent,
-  extractPlasmicQueryData,
-  ComponentRenderData,
-  PlasmicRootProvider,
-  DataProvider,
-} from '@plasmicapp/loader-nextjs'
-
-import type { GetStaticPaths, GetStaticProps } from 'next'
-
-import { useGetUsersQuery } from '../gql/generated'
-
-import Error from 'next/error'
-import { useRouter } from 'next/router'
-import { PLASMIC } from '../../plasmic-init'
-
-export default function PlasmicLoaderPage(props: {
-  plasmicData?: ComponentRenderData
-  queryCache?: Record<string, any>
-}) {
-  const { plasmicData, queryCache } = props
-  const router = useRouter()
-  if (!plasmicData || plasmicData.entryCompMetas.length === 0) {
-    return <Error statusCode={404} />
-  }
-  const pageMeta = plasmicData.entryCompMetas[0]
+import { Flex, Text } from '@chakra-ui/react'
+export default function HomePage() {
   return (
-    <PlasmicRootProvider
-      loader={PLASMIC}
-      prefetchedData={plasmicData}
-      prefetchedQueryData={queryCache}
-      pageParams={pageMeta.params}
-      pageQuery={router.query}
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      h="h-screen"
+      w="w-screen"
+      bgColor="gray.800"
     >
-      <PlasmicComponent component={pageMeta.displayName} />
-    </PlasmicRootProvider>
-  )
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { catchall } = context.params ?? {}
-  const plasmicPath =
-    typeof catchall === 'string'
-      ? catchall
-      : Array.isArray(catchall)
-      ? `/${catchall.join('/')}`
-      : '/'
-  const plasmicData = await PLASMIC.maybeFetchComponentData(plasmicPath)
-  if (!plasmicData) {
-    // non-Plasmic catch-all
-    return { props: {} }
-  }
-  const pageMeta = plasmicData.entryCompMetas[0]
-  // Cache the necessary data fetched for the page
-  const queryCache = await extractPlasmicQueryData(
-    <PlasmicRootProvider
-      loader={PLASMIC}
-      prefetchedData={plasmicData}
-      pageParams={pageMeta.params}
-    >
-      <PlasmicComponent component={pageMeta.displayName} />
-    </PlasmicRootProvider>,
-  )
-  // Use revalidate if you want incremental static regeneration
-  return { props: { plasmicData, queryCache }, revalidate: 60 }
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const pageModules = await PLASMIC.fetchPages()
-  return {
-    paths: pageModules.map((mod) => ({
-      params: {
-        catchall: mod.path.substring(1).split('/'),
-      },
-    })),
-    fallback: 'blocking',
-  }
-}
-
-export function UsersBox(props: {
-  children?: React.ReactNode
-  className?: string
-}) {
-  const { children, className } = props
-
-  // A hook that you've defined for fetching product data by slug
-  const response = useGetUsersQuery()
-  return (
-    <div className={className}>
-      {
-        // Make this data available to this subtree via context,
-        // with the name "product"
-      }
-      <DataProvider name="users" data={response.data}>
-        {children}
-      </DataProvider>
-    </div>
+      <Text color="white" fontSize="3xl">
+        Hello Piauindie
+      </Text>
+    </Flex>
   )
 }
