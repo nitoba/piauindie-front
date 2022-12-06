@@ -1,4 +1,5 @@
 import { initPlasmicLoader } from '@plasmicapp/loader-nextjs'
+import { UsersBox } from './src/pages/[[...catchall]]'
 
 const projectConfig = {
   id: process.env.PROJECT_ID ?? '',
@@ -22,4 +23,4 @@ export const PLASMIC = initPlasmicLoader({
 // http://localhost:3000/plasmic-host).  See
 // https://docs.plasmic.app/learn/app-hosting/#set-a-plasmic-project-to-use-your-app-host
 
-// PLASMIC.registerComponent(...);
+PLASMIC.substituteComponent(UsersBox, { name: 'test', isCode: true })

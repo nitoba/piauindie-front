@@ -4,8 +4,12 @@ import {
   extractPlasmicQueryData,
   ComponentRenderData,
   PlasmicRootProvider,
+  DataProvider,
 } from '@plasmicapp/loader-nextjs'
+
 import type { GetStaticPaths, GetStaticProps } from 'next'
+
+import { useGetUsersQuery } from '../gql/generated'
 
 import Error from 'next/error'
 import { useRouter } from 'next/router'
@@ -72,4 +76,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })),
     fallback: 'blocking',
   }
+}
+
+export function UsersBox(props: {
+  children?: React.ReactNode
+  className?: string
+}) {
+  const { children, className } = props
+
+  // A hook that you've defined for fetching product data by slug
+  const response = useGetUsersQuery()
+  return (
+    <div className={className}>
+      {
+        // Make this data available to this subtree via context,
+        // with the name "product"
+      }
+      <DataProvider name="users" data={response.data}>
+        {children}
+      </DataProvider>
+    </div>
+  )
 }
