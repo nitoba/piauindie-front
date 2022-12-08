@@ -10,7 +10,7 @@
     "lint": "eslint src --ext .tsx,.ts",
     "commit": "git-cz",
     "lint:fix": "npm run lint -- --fix",
-    "codegen": "DOTENV_CONFIG_PATH=.env.local npx graphql-codegen -r dotenv/config --config codegen.ts"
+    "codegen": "DOTENV_CONFIG_PATH=.env npx graphql-codegen -r dotenv/config --config codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",

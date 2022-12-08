@@ -1,0 +1,18 @@
+query getLessonsByCourseSlug($slug: String!) {
+  lessons(
+    where: { course: { slug: { equals: $slug } } }
+    orderBy: { createdAt: desc }
+  ) {
+    id
+    title
+    description
+    slug
+    videoUrl
+    course {
+      teacher {
+        id
+        name
+      }
+    }
+  }
+}
