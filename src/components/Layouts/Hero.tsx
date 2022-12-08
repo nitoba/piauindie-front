@@ -31,14 +31,17 @@ export function Hero() {
         >
           <Heading
             fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+            fontSize={{ base: '5xl', sm: '6xl', md: '7xl' }}
             lineHeight={'110%'}
           >
             <Text as={'span'} color={'brand.400'}>
               Piauindie
             </Text>
           </Heading>
-          <Text color={'gray.500'}>
+          <Text
+            color={'gray.500'}
+            fontSize={{ base: 'md', sm: 'lg', md: 'xl' }}
+          >
             A community of game and technology lovers Want to be part of this
             community? Click the button below to find out more
           </Text>
@@ -71,7 +74,7 @@ export function Hero() {
                 Learn more
               </Text>
             </Link>
-            <Box>
+            <Box display={{ base: 'none', sm: 'block' }}>
               <Icon
                 as={Arrow}
                 color={useColorModeValue('brand.800', 'gray.300')}
