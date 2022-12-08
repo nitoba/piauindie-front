@@ -59,17 +59,20 @@ export function NavBar() {
             variant={'ghost'}
             aria-label={'Toggle Navigation'}
           />
-        </Flex>
-        <Flex
-          flex={{ base: 1 }}
-          justify={{ base: 'center', md: 'start' }}
-          alignItems="center"
-        >
           <LinkNext href="/">
-            <Box pos="relative" w="40px" h="40px">
+            <Box pos="relative" w="30px" h="30px">
               <Image src={'/logo.jpg'} alt="logo" fill />
             </Box>
           </LinkNext>
+        </Flex>
+        <Flex alignItems="center" flex={{ base: 1 }}>
+          <Box display={{ base: 'none', md: 'flex' }}>
+            <LinkNext href="/">
+              <Box pos="relative" w="40px" h="40px">
+                <Image src={'/logo.jpg'} alt="logo" fill />
+              </Box>
+            </LinkNext>
+          </Box>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
@@ -80,14 +83,12 @@ export function NavBar() {
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
-          spacing={6}
+          spacing={{ base: 3, md: 6 }}
         >
           <Button fontWeight={500} buttonType={'secondary'}>
             Sign In
           </Button>
-          <Button display={{ base: 'none', md: 'inline-flex' }} fontSize={'sm'}>
-            Sign Up
-          </Button>
+          <Button fontSize={'sm'}>Sign Up</Button>
         </Stack>
       </Flex>
 

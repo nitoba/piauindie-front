@@ -13,6 +13,7 @@ export function Button({ buttonType = 'primary', ...props }: Props) {
       border="2px"
       borderColor={isPrimary ? 'transparent' : 'brand.500'}
       color={isPrimary ? 'white' : 'brand.500'}
+      size={{ base: 'sm', md: 'md' }}
       _hover={{ bg: isPrimary ? 'brand.600' : 'brand.500', color: 'white' }}
       {...props}
     />
