@@ -283,4 +283,8 @@ const NAV_ITEMS: Array<NavItem> = [
       },
     ],
   },
+  {
+    label: 'Contato',
+    href: '/contact',
+  },
 ]
