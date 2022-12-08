@@ -30,11 +30,7 @@ export default function ContactPage() {
       }}
       id="contact"
     >
-      <Box
-        borderRadius="lg"
-        m={{ base: 5, md: 16, lg: 10 }}
-        p={{ base: 5, lg: 16 }}
-      >
+      <Box m={{ base: 5, md: 16, lg: 10 }} p={{ base: 5, lg: 16 }}>
         <Box>
           <VStack spacing={{ base: 4, md: 8, lg: 20 }}>
             <Heading
@@ -46,10 +42,10 @@ export default function ContactPage() {
               Deixe seu feedback
             </Heading>
 
-            <Stack spacing={{ base: 4, md: 8, lg: 20 }}>
+            <Stack spacing={{ base: 4, md: 8, lg: 20 }} w="full">
               <Box
                 bg={useColorModeValue('white', 'gray.700')}
-                borderRadius="lg"
+                borderRadius="xl"
                 p={4}
                 color={useColorModeValue('gray.700', 'whiteAlpha.900')}
                 shadow="base"
